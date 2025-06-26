@@ -46,6 +46,8 @@ services:
     environment:
       # Set the appropriate timezone for your location (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g:
       TZ: "Europe/Copenhagen"
+      # Empty, so webpassword_file is used
+      FTLCONF_webserver_api_password: ""
       # Set a password to access the web interface.
       WEBPASSWORD_FILE: /run/secrets/pihole_admin_password
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
