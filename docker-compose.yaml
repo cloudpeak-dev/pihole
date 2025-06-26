@@ -46,8 +46,10 @@ services:
     environment:
       # Set the appropriate timezone for your location (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g:
       TZ: "Europe/Copenhagen"
-      # Set a password to access the web interface. Not setting one will result in a random password being assigned
-      FTLCONF_webserver_api_password: /run/secrets/pihole_admin_password
+      # Set a password to access the web interface.
+      WEBPASSWORD_FILE: "/run/secrets/pihole_admin_password"
+      # Empty, so webpassword_file is used
+      FTLCONF_webserver_api_password: ""
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
       FTLCONF_dns_listeningMode: "all"
       # This will not allow iPhone users to use iCloud Private Relay, too bad :(
