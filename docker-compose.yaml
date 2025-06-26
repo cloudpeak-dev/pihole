@@ -48,8 +48,6 @@ services:
       TZ: "Europe/Copenhagen"
       # Set a password to access the web interface.
       WEBPASSWORD_FILE: "/run/secrets/pihole_admin_password"
-      # Empty, so webpassword_file is used
-      FTLCONF_webserver_api_password: ""
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
       FTLCONF_dns_listeningMode: "all"
       # This will not allow iPhone users to use iCloud Private Relay, too bad :(
