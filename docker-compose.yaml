@@ -47,13 +47,13 @@ services:
       # Set the appropriate timezone for your location (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g:
       TZ: "Europe/Copenhagen"
       # Set a password to access the web interface. Not setting one will result in a random password being assigned
-      FTLCONF_webserver_api_password: ${PIHOLE_ADMIN_PASSWORD}
+      FTLCONF_webserver_api_password: /run/secrets/pihole_admin_password
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
       FTLCONF_dns_listeningMode: "all"
       # This will not allow iPhone users to use iCloud Private Relay, too bad :(
       FTLCONF_dns_specialDomains_iCloudPrivateRelay: "true"
-    env_file:
-      - .env
+    secrets:
+      - pihole_admin_password
     # Volumes store your data between container upgrades
     volumes:
       # For persisting Pi-hole's databases and common configuration file
@@ -71,3 +71,6 @@ services:
       # Optional, if Pi-hole should get some more processing time
       - SYS_NICE
     restart: unless-stopped
+secrets:
+  pihole_admin_password:
+    file: /opt/secrets/PIHOLE_ADMIN_PASSWORD
