@@ -76,6 +76,8 @@ services:
       # Optional, if Pi-hole should get some more processing time
       - SYS_NICE
     restart: unless-stopped
+    networks:
+      - monitoring
 secrets:
   pihole_admin_password:
     file: /opt/secrets/PIHOLE_ADMIN_PASSWORD
