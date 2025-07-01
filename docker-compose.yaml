@@ -1,4 +1,9 @@
 # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+networks:
+  monitoring:
+    name: monitoring_default
+    external: true
+
 services:
   # Exporter for Pi-hole metrics
   pihole-exporter:
