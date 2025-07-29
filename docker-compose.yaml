@@ -60,6 +60,7 @@ services:
       FTLCONF_dns_listeningMode: "all"
       # This will not allow iPhone users to use iCloud Private Relay, too bad :(
       FTLCONF_dns_specialDomains_iCloudPrivateRelay: "true"
+      FTLCONF_webserver_port: "1080o,[::]:1080o,1443os,[::]:1443os"
     secrets:
       - pihole_admin_password
     # Volumes store your data between container upgrades
@@ -79,8 +80,8 @@ services:
       # Optional, if Pi-hole should get some more processing time
       - SYS_NICE
     restart: unless-stopped
-    networks:
-      - monitoring
+    # networks:
+    #   - monitoring
 secrets:
   pihole_admin_password: # Needs notion write up
     file: /opt/secrets/PIHOLE_ADMIN_PASSWORD
