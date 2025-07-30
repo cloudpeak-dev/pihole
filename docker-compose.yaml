@@ -1,13 +1,7 @@
-# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
-networks:
-  monitoring:
-    name: monitoring_default
-    external: true
-
 services:
   # Exporter for Pi-hole metrics
   pihole-exporter:
-    restart: unless-stopped
+    restart: always
     image: ekofr/pihole-exporter:latest
     network_mode: host
     environment:
@@ -32,11 +26,10 @@ services:
       interval: 300s
       retries: 5
       timeout: 10s
-    networks:
-      - monitoring
     depends_on:
       - pihole
   pihole:
+    restart: always
     container_name: pihole
     network_mode: host
     image: pihole/pihole:latest
@@ -80,7 +73,6 @@ services:
       - SYS_TIME
       # Optional, if Pi-hole should get some more processing time
       - SYS_NICE
-    restart: unless-stopped
     # networks:
     #   - monitoring
 secrets:
