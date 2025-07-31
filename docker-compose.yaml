@@ -3,15 +3,17 @@ services:
   pihole-exporter:
     restart: always
     image: ekofr/pihole-exporter:latest
-    network_mode: host
+    # network_mode: host
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
-      PIHOLE_HOSTNAME: "localhost"
+      PIHOLE_HOSTNAME: "host.docker.internal"
       PIHOLE_PASSWORD: ${PIHOLE_ADMIN_PASSWORD}
       PIHOLE_PORT: "1080"
       PORT: "9617"
       DEBUG: "true"
-    # ports:
-    #   - "9617:9617"
+    ports:
+      - "9617:9617"
     env_file:
       - .env
     healthcheck:
